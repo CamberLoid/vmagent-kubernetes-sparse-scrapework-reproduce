@@ -1,0 +1,108 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reproduction-workload
+  namespace: reproduction-workload
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reproduction-workload
+  template:
+    metadata:
+      labels:
+        app: reproduction-workload
+    spec:
+      containers:
+        - name: workload
+          image: python:3.13.9-slim
+          command: [python3, /app/reproduction.py]
+          ports:
+            - name: metrics
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: metrics
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+            limits:
+              cpu: "2"
+              memory: 256Mi
+          volumeMounts:
+            - name: script
+              mountPath: /app
+              readOnly: true
+      volumes:
+        - name: script
+          configMap:
+            name: reproduction
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: reproduction-metrics
+  namespace: reproduction-monitor
+  labels:
+    reproduction-metrics: "true"
+spec:
+  selector:
+    reproduction-subject: "true"
+  ports:
+    - name: http
+      port: 8429
+      targetPort: 8429
+---
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMServiceScrape
+metadata:
+  name: reproduction-metrics
+  namespace: reproduction-stack
+spec:
+  namespaceSelector:
+    matchNames: [reproduction-monitor]
+  selector:
+    matchLabels:
+      reproduction-metrics: "true"
+  endpoints:
+    - port: http
+      interval: 5s
+---
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMAgent
+metadata:
+  name: reproduction
+  namespace: reproduction-monitor
+spec:
+  image:
+    repository: victoriametrics/vmagent
+    tag: v1.154.0
+    pullPolicy: IfNotPresent
+  shardCount: 2
+  replicaCount: 1
+  selectAllByDefault: false
+  enableKubernetesAPISelectors: false
+  scrapeInterval: 60s
+  serviceScrapeSelector:
+    matchLabels:
+      reproduction-generated: "true"
+  serviceScrapeNamespaceSelector:
+    matchLabels:
+      kubernetes.io/metadata.name: reproduction-workload
+  podMetadata:
+    labels:
+      reproduction-subject: "true"
+  extraArgs:
+    promscrape.dropOriginalLabels: "true"
+    promscrape.cluster.replicationFactor: "1"
+  remoteWrite:
+    - url: http://vmsingle-reproduction-stack.reproduction-stack.svc:8428/api/v1/write
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: "6"
+      memory: 24Gi

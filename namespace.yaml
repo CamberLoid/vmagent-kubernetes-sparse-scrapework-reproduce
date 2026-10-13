@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: reproduction-stack
+  labels:
+    kubernetes.io/metadata.name: reproduction-stack
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: reproduction-monitor
+  labels:
+    kubernetes.io/metadata.name: reproduction-monitor
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: reproduction-workload
+  labels:
+    kubernetes.io/metadata.name: reproduction-workload

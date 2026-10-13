@@ -1,0 +1,138 @@
+File: vmagent-prod
+Build ID: 5d027ff23b5eefe158ddb7ab1781f15e96f556b1
+Type: inuse_objects
+Time: 2026-10-13 21:39:59 CST
+Showing nodes accounting for 3120817, 96.02% of 3250278 total
+Dropped 173 nodes (cum <= 16251)
+      flat  flat%   sum%        cum   cum%
+    468739 14.42% 14.42%    1751549 53.89%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promrelabel.parseRelabelConfig
+    336844 10.36% 24.79%     402663 12.39%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape/discovery/kubernetes.(*groupWatcher).getScrapeWorkObjectsByAPIWatcherLocked.func1
+    303122  9.33% 34.11%     303122  9.33%  github.com/VictoriaMetrics/VictoriaMetrics/lib/bytesutil.NewFastStringTransformer (inline)
+    192397  5.92% 40.03%     192397  5.92%  reflect.unsafe_New
+    162927  5.01% 45.04%     162927  5.01%  reflect.growslice
+    133664  4.11% 49.16%     133664  4.11%  regexp/syntax.(*compiler).inst (inline)
+    127754  3.93% 53.09%     127754  3.93%  regexp.onePassCopy
+    124536  3.83% 56.92%     790096 24.31%  regexp.compile
+    119906  3.69% 60.61%     119906  3.69%  encoding/json/v2.makeString
+    109230  3.36% 63.97%     109230  3.36%  regexp/syntax.(*compiler).init (inline)
+    107671  3.31% 67.28%     476070 14.65%  github.com/VictoriaMetrics/VictoriaMetrics/lib/regexutil.NewPromRegex
+     81920  2.52% 69.80%      81920  2.52%  regexp/syntax.(*parser).maybeConcat
+     66640  2.05% 71.85%      66640  2.05%  fmt.Sprintf
+     65537  2.02% 73.87%      65537  2.02%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promauth.newGetTLSConfigCached (inline)
+     65536  2.02% 75.88%      73728  2.27%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape/discovery/kubernetes.newAPIConfig
+     65536  2.02% 77.90%      65536  2.02%  github.com/VictoriaMetrics/VictoriaMetrics/lib/regexutil.getLiteral
+     65536  2.02% 79.92%     131072  4.03%  regexp.makeOnePass.func1
+     65536  2.02% 81.93%      65536  2.02%  regexp.mergeRuneSets.func2 (inline)
+     49152  1.51% 83.44%      49152  1.51%  regexp/syntax.(*Regexp).CapNames
+     47593  1.46% 84.91%      82156  2.53%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.newScraper
+     32769  1.01% 85.92%      32769  1.01%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape/discovery/kubernetes.(*ObjectMeta).key (inline)
+     32769  1.01% 86.93%      32769  1.01%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promutil.(*Labels).Add (inline)
+     32768  1.01% 87.93%      83347  2.56%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*targetStatusMap).registerJobsMetricsLocked
+     32768  1.01% 88.94%      32768  1.01%  unicode/utf8.AppendRune (inline)
+     30040  0.92% 89.87%      32225  0.99%  net/http.(*Transport).Clone
+     25820  0.79% 90.66%      29407   0.9%  net/http.(*Transport).getConn
+     21904  0.67% 91.33%      21904  0.67%  github.com/VictoriaMetrics/metrics.(*Set).mustRegisterLocked
+     21846  0.67% 92.01%      21846  0.67%  internal/stringslite.Clone (inline)
+     21846  0.67% 92.68%      21846  0.67%  reflect.makemap
+     19663   0.6% 93.28%      19663   0.6%  internal/sync.newIndirectNode[go.shape.interface {},go.shape.interface {}] (inline)
+     16385   0.5% 93.79%      16385   0.5%  github.com/VictoriaMetrics/VictoriaMetrics/lib/bytesutil.NewFastStringMatcher (inline)
+     16384   0.5% 94.29%      16384   0.5%  github.com/VictoriaMetrics/VictoriaMetrics/lib/netutil.newStatDialFunc (inline)
+     13108   0.4% 94.69%    1764657 54.29%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promrelabel.ParseRelabelConfigs
+     12605  0.39% 95.08%      65819  2.03%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*scrapeWorkConfig).getScrapeWork
+     10923  0.34% 95.42%      98306  3.02%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promauth.(*Options).NewConfig
+      7687  0.24% 95.66%     305114  9.39%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*ScrapeConfig).clone
+      7023  0.22% 95.87%    1869986 57.53%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.getScrapeWorkConfig
+      4681  0.14% 96.02%      81791  2.52%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*scrapeWork).run
+        52 0.0016% 96.02%     280138  8.62%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape/discovery/kubernetes.(*urlWatcher).reloadObjects
+         0     0% 96.02%     247317  7.61%  encoding/json.(*Decoder).Decode
+         0     0% 96.02%     321759  9.90%  encoding/json.Unmarshal (inline)
+         0     0% 96.02%     544744 16.76%  encoding/json/v2.Unmarshal
+         0     0% 96.02%      61077  1.88%  encoding/json/v2.makeMapArshaler.func3
+         0     0% 96.02%      57101  1.76%  encoding/json/v2.makeMethodArshaler.func6
+         0     0% 96.02%     378389 11.64%  encoding/json/v2.makePointerArshaler.func3
+         0     0% 96.02%     467039 14.37%  encoding/json/v2.makeSliceArshaler.func3
+         0     0% 96.02%     119906  3.69%  encoding/json/v2.makeStringArshaler.func2
+         0     0% 96.02%     544744 16.76%  encoding/json/v2.makeStructArshaler.func3
+         0     0% 96.02%     544744 16.76%  encoding/json/v2.unmarshalDecode
+         0     0% 96.02%      30586  0.94%  github.com/VictoriaMetrics/VictoriaMetrics/lib/bytesutil.(*FastStringTransformer).Transform
+         0     0% 96.02%      16384   0.5%  github.com/VictoriaMetrics/VictoriaMetrics/lib/netutil.NewStatDialFunc (inline)
+         0     0% 96.02%      47333  1.46%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promauth.(*HTTPClientConfig).NewConfig
+         0     0% 96.02%      50973  1.57%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promauth.(*ProxyClientConfig).NewConfig
+         0     0% 96.02%      57108  1.76%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promauth.(*roundTripper).RoundTrip
+         0     0% 96.02%      27701  0.85%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promauth.(*roundTripper).getTransport
+         0     0% 96.02%      30586  0.94%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promrelabel.(*ParsedConfigs).Apply
+         0     0% 96.02%      30586  0.94%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promrelabel.(*parsedRelabelConfig).apply
+         0     0% 96.02%      25488  0.78%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*Config).getKubernetesSDScrapeWork
+         0     0% 96.02%     443767 13.65%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*Config).mustStart
+         0     0% 96.02%    2175119 66.92%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*Config).parseData
+         0     0% 96.02%     360420 11.09%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*ScrapeConfig).mustStart
+         0     0% 96.02%      65819  2.03%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*ScrapeConfig).mustStart.func1
+         0     0% 96.02%     297427  9.15%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*ScrapeConfig).unmarshalJSON (inline)
+         0     0% 96.02%      62278  1.92%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*client).ReadData
+         0     0% 96.02%     127586  3.93%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*scrapeConfig).run
+         0     0% 96.02%     127586  3.93%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*scrapeConfig).run.func1
+         0     0% 96.02%     127586  3.93%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*scrapeConfigs).add.func1
+         0     0% 96.02%      67747  2.08%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*scrapeWork).scrapeAndLogError
+         0     0% 96.02%      67747  2.08%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*scrapeWork).scrapeInternal
+         0     0% 96.02%     102098  3.14%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*scraperGroup).update
+         0     0% 96.02%      86472  2.66%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*scraperGroup).update.func1
+         0     0% 96.02%      83347  2.56%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*targetStatusMap).registerJobNames
+         0     0% 96.02%    2621618 80.66%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.Init.func1
+         0     0% 96.02%    2175119 66.92%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.loadConfig
+         0     0% 96.02%      34563  1.06%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.newClient
+         0     0% 96.02%    2621618 80.66%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.runScraper
+         0     0% 96.02%      25488  0.78%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.runScraper.func14
+         0     0% 96.02%      25488  0.78%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape/discovery/kubernetes.(*SDConfig).GetScrapeWorkObjects (inline)
+         0     0% 96.02%     360420 11.09%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape/discovery/kubernetes.(*SDConfig).MustStart
+         0     0% 96.02%      21846  0.67%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape/discovery/kubernetes.(*Service).key (inline)
+         0     0% 96.02%      25488  0.78%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape/discovery/kubernetes.(*apiWatcher).getScrapeWorkObjects
+         0     0% 96.02%     286692  8.82%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape/discovery/kubernetes.(*apiWatcher).mustStart
+         0     0% 96.02%      25488  0.78%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape/discovery/kubernetes.(*groupWatcher).registerPendingAPIWatchers
+         0     0% 96.02%     286692  8.82%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape/discovery/kubernetes.(*groupWatcher).startWatchersForRole
+         0     0% 96.02%      25488  0.78%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape/discovery/kubernetes.(*urlWatcher).recreateScrapeWorksLocked
+         0     0% 96.02%      25488  0.78%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape/discovery/kubernetes.(*urlWatcher).registerPendingAPIWatchersLocked
+         0     0% 96.02%      65819  2.03%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape/discovery/kubernetes.getScrapeWorkObjectsForLabels
+         0     0% 96.02%     128503  3.95%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape/discovery/kubernetes.parseEndpointsList
+         0     0% 96.02%     151583  4.66%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape/discovery/kubernetes.parseServiceList
+         0     0% 96.02%      32769  1.01%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promutil.(*Labels).InitFromMap
+         0     0% 96.02%      57101  1.76%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promutil.(*Labels).UnmarshalJSON
+         0     0% 96.02%      65536  2.02%  github.com/VictoriaMetrics/VictoriaMetrics/lib/regexutil.SimplifyPromRegex (inline)
+         0     0% 96.02%      65536  2.02%  github.com/VictoriaMetrics/VictoriaMetrics/lib/regexutil.simplifyRegex
+         0     0% 96.02%      21904  0.67%  github.com/VictoriaMetrics/metrics.(*Set).NewGauge (inline)
+         0     0% 96.02%      21904  0.67%  github.com/VictoriaMetrics/metrics.(*Set).registerMetric
+         0     0% 96.02%      21904  0.67%  github.com/VictoriaMetrics/metrics.NewGauge (inline)
+         0     0% 96.02%      19663   0.6%  internal/sync.(*HashTrieMap[go.shape.interface {},go.shape.interface {}]).Load
+         0     0% 96.02%      19663   0.6%  internal/sync.(*HashTrieMap[go.shape.interface {},go.shape.interface {}]).init (inline)
+         0     0% 96.02%      19663   0.6%  internal/sync.(*HashTrieMap[go.shape.interface {},go.shape.interface {}]).initSlow
+         0     0% 96.02%      57108  1.76%  net/http.(*Client).Do (inline)
+         0     0% 96.02%      57108  1.76%  net/http.(*Client).do
+         0     0% 96.02%      57108  1.76%  net/http.(*Client).send
+         0     0% 96.02%      29407   0.9%  net/http.(*Transport).RoundTrip (inline)
+         0     0% 96.02%      29407   0.9%  net/http.(*Transport).roundTrip
+         0     0% 96.02%      57108  1.76%  net/http.send
+         0     0% 96.02%      21846  0.67%  reflect.MakeMap (inline)
+         0     0% 96.02%      21846  0.67%  reflect.MakeMapWithSize
+         0     0% 96.02%     192410  5.92%  reflect.New
+         0     0% 96.02%     162927  5.01%  reflect.Value.Grow
+         0     0% 96.02%     162927  5.01%  reflect.Value.grow
+         0     0% 96.02%     790096 24.31%  regexp.Compile (inline)
+         0     0% 96.02%     286478  8.81%  regexp.MustCompile
+         0     0% 96.02%     258826  7.96%  regexp.compileOnePass
+         0     0% 96.02%     131072  4.03%  regexp.makeOnePass
+         0     0% 96.02%      65536  2.02%  regexp.mergeRuneSets
+         0     0% 96.02%      32768  1.01%  regexp/syntax.(*Prog).Prefix
+         0     0% 96.02%      96561  2.97%  regexp/syntax.(*compiler).compile
+         0     0% 96.02%      26222  0.81%  regexp/syntax.(*compiler).empty (inline)
+         0     0% 96.02%      20120  0.62%  regexp/syntax.(*compiler).loop
+         0     0% 96.02%      41277  1.27%  regexp/syntax.(*compiler).rune
+         0     0% 96.02%      20120  0.62%  regexp/syntax.(*compiler).star
+         0     0% 96.02%      49152  1.51%  regexp/syntax.(*parser).literal
+         0     0% 96.02%      32768  1.01%  regexp/syntax.(*parser).op
+         0     0% 96.02%      81920  2.52%  regexp/syntax.(*parser).push
+         0     0% 96.02%     242894  7.47%  regexp/syntax.Compile
+         0     0% 96.02%      81920  2.52%  regexp/syntax.Parse (inline)
+         0     0% 96.02%      81920  2.52%  regexp/syntax.parse
+         0     0% 96.02%      32768  1.01%  strings.(*Builder).WriteRune
+         0     0% 96.02%      21846  0.67%  strings.Clone (inline)
+         0     0% 96.02%      19663   0.6%  sync.(*Map).Load (inline)
+         0     0% 96.02%    3238344 99.63%  sync.(*WaitGroup).Go.func1

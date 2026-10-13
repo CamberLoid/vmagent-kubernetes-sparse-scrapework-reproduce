@@ -1,0 +1,146 @@
+File: vmagent-prod
+Build ID: 8296caf34e0e9fb19bd7525aeea5ce7e2cdaf967
+Type: alloc_space
+Time: 2026-10-13 22:02:15 CST
+Showing nodes accounting for 27196.70MB, 93.66% of 29038.96MB total
+Dropped 552 nodes (cum <= 145.19MB)
+      flat  flat%   sum%        cum   cum%
+ 9369.30MB 32.26% 32.26%  9375.32MB 32.29%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape/discovery/kubernetes.(*apiWatcher).getScrapeWorkObjects
+ 5723.93MB 19.71% 51.98%  5723.93MB 19.71%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.appendExtraLabels
+ 1516.52MB  5.22% 57.20%  1516.52MB  5.22%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.mergeLabels
+ 1471.26MB  5.07% 62.26%  1611.03MB  5.55%  gopkg.in/yaml%2ev2.yaml_emitter_emit
+ 1036.95MB  3.57% 65.84%  1036.95MB  3.57%  github.com/VictoriaMetrics/VictoriaMetrics/lib/protoparser/prometheus.appendKey (inline)
+  929.12MB  3.20% 69.04%   929.12MB  3.20%  github.com/VictoriaMetrics/VictoriaMetrics/lib/protoparser/prometheus.(*Row).unmarshalTags
+  793.20MB  2.73% 71.77%   793.20MB  2.73%  github.com/valyala/gozstd.compress
+  766.82MB  2.64% 74.41%   766.82MB  2.64%  github.com/VictoriaMetrics/VictoriaMetrics/lib/slicesutil.SetLength[go.shape.uint8] (inline)
+  720.83MB  2.48% 76.89%   720.83MB  2.48%  gopkg.in/yaml%2ev2.yaml_emitter_initialize (inline)
+  689.76MB  2.38% 79.26%   689.76MB  2.38%  bytes.growSlice
+  582.30MB  2.01% 81.27%  1511.42MB  5.20%  github.com/VictoriaMetrics/VictoriaMetrics/lib/protoparser/prometheus.unmarshalRow
+  554.01MB  1.91% 83.18%   554.01MB  1.91%  github.com/VictoriaMetrics/VictoriaMetrics/lib/slicesutil.SetLength[go.shape.struct { Name string; Value string }] (inline)
+  444.06MB  1.53% 84.71%   444.06MB  1.53%  github.com/VictoriaMetrics/VictoriaMetrics/lib/bytesutil.(*ByteBuffer).MustWrite (inline)
+  362.04MB  1.25% 85.95%   362.04MB  1.25%  regexp/syntax.(*parser).newRegexp (inline)
+  312.11MB  1.07% 87.03%   312.11MB  1.07%  regexp/syntax.(*compiler).inst (inline)
+  278.70MB  0.96% 87.99%  1475.11MB  5.08%  github.com/VictoriaMetrics/VictoriaMetrics/lib/protoparser/prometheus.GetRowsDiff
+  222.09MB  0.76% 88.75%   222.09MB  0.76%  github.com/VictoriaMetrics/VictoriaMetrics/lib/slicesutil.SetLength[go.shape.struct { Labels []github.com/VictoriaMetrics/VictoriaMetrics/lib/prompb.Label; Samples []github.com/VictoriaMetrics/VictoriaMetrics/lib/prompb.Sample }] (inline)
+  209.52MB  0.72% 89.47%   209.52MB  0.72%  gopkg.in/yaml%2ev2.(*parser).node (inline)
+  171.04MB  0.59% 90.06%   171.04MB  0.59%  reflect.unsafe_New
+  165.14MB  0.57% 90.63%   165.14MB  0.57%  bytes.Clone (inline)
+  160.51MB  0.55% 91.19%   160.51MB  0.55%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*Config).getScrapeWorkGeneric
+  159.97MB  0.55% 91.74%   159.97MB  0.55%  strings.genSplit
+  139.09MB  0.48% 92.21%   859.93MB  2.96%  gopkg.in/yaml%2ev2.newEncoder (inline)
+   90.01MB  0.31% 92.52%   511.55MB  1.76%  regexp/syntax.parse
+   70.51MB  0.24% 92.77%  2442.67MB  8.41%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promrelabel.parseRelabelConfig
+   42.51MB  0.15% 92.91%   772.71MB  2.66%  regexp.compile
+   30.50MB  0.11% 93.02%   716.68MB  2.47%  github.com/VictoriaMetrics/metrics.(*Gauge).marshalTo
+   25.50MB 0.088% 93.11%   869.88MB  3.00%  gopkg.in/yaml%2ev2.(*encoder).emitScalar
+      24MB 0.083% 93.19%   265.30MB  0.91%  net/http.(*Transport).dialConn
+      24MB 0.083% 93.27%   336.81MB  1.16%  gopkg.in/yaml%2ev2.(*parser).mapping
+   23.52MB 0.081% 93.35%   197.94MB  0.68%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*ScrapeConfig).clone
+      23MB 0.079% 93.43%   177.52MB  0.61%  gopkg.in/yaml%2ev2.(*parser).scalar
+   13.50MB 0.046% 93.48%  1468.06MB  5.06%  gopkg.in/yaml%2ev2.(*encoder).structv.func1
+      13MB 0.045% 93.52%   509.59MB  1.75%  github.com/VictoriaMetrics/VictoriaMetrics/lib/regexutil.NewPromRegex
+   12.90MB 0.044% 93.57%   933.02MB  3.21%  github.com/VictoriaMetrics/metrics.(*Set).WritePrometheus
+       7MB 0.024% 93.59%   336.81MB  1.16%  gopkg.in/yaml%2ev2.(*parser).sequence
+    5.86MB  0.02% 93.61%  1029.79MB  3.55%  github.com/VictoriaMetrics/VictoriaMetrics/app/vmagent/remotewrite.(*writeRequest).tryPushTimeSeries
+    4.50MB 0.015% 93.63%  2461.17MB  8.48%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.getScrapeWorkConfig
+    2.04MB 0.007% 93.64% 11334.60MB 39.03%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*scrapeWork).run
+       2MB 0.0069% 93.64%  1536.73MB  5.29%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*scrapeWorkConfig).getScrapeWork
+    1.54MB 0.0053% 93.65%  3184.17MB 10.97%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*Config).parseData
+    1.50MB 0.0052% 93.65%  2444.17MB  8.42%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promrelabel.ParseRelabelConfigs
+    0.52MB 0.0018% 93.65%  9387.89MB 32.33%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*Config).getKubernetesSDScrapeWork
+    0.50MB 0.0017% 93.66%  1537.23MB  5.29%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape/discovery/kubernetes.(*groupWatcher).getScrapeWorkObjectsByAPIWatcherLocked.func1
+         0     0% 93.66%   689.76MB  2.38%  bytes.(*Buffer).Write
+         0     0% 93.66%   689.76MB  2.38%  bytes.(*Buffer).grow
+         0     0% 93.66%   167.65MB  0.58%  encoding/json.Marshal (inline)
+         0     0% 93.66%   167.65MB  0.58%  encoding/json/v2.Marshal
+         0     0% 93.66%   938.47MB  3.23%  fmt.Fprintf
+         0     0% 93.66%  1029.79MB  3.55%  github.com/VictoriaMetrics/VictoriaMetrics/app/vmagent/remotewrite.(*pendingSeries).TryPushTimeSeries
+         0     0% 93.66%  1029.79MB  3.55%  github.com/VictoriaMetrics/VictoriaMetrics/app/vmagent/remotewrite.(*remoteWriteCtx).TryPushTimeSeries
+         0     0% 93.66%  1029.79MB  3.55%  github.com/VictoriaMetrics/VictoriaMetrics/app/vmagent/remotewrite.(*remoteWriteCtx).tryPushTimeSeriesInternal
+         0     0% 93.66%   935.05MB  3.22%  github.com/VictoriaMetrics/VictoriaMetrics/app/vmagent/remotewrite.(*writeRequest).tryFlush
+         0     0% 93.66%  1032.79MB  3.56%  github.com/VictoriaMetrics/VictoriaMetrics/app/vmagent/remotewrite.PushDropSamplesOnFailure
+         0     0% 93.66%  1032.79MB  3.56%  github.com/VictoriaMetrics/VictoriaMetrics/app/vmagent/remotewrite.tryPush
+         0     0% 93.66%  1029.79MB  3.55%  github.com/VictoriaMetrics/VictoriaMetrics/app/vmagent/remotewrite.tryPushTimeSeriesToRemoteStorages
+         0     0% 93.66%   935.05MB  3.22%  github.com/VictoriaMetrics/VictoriaMetrics/app/vmagent/remotewrite.tryPushWriteRequest
+         0     0% 93.66%  1232.70MB  4.24%  github.com/VictoriaMetrics/VictoriaMetrics/lib/appmetrics.WritePrometheusMetrics
+         0     0% 93.66%  1186.25MB  4.09%  github.com/VictoriaMetrics/VictoriaMetrics/lib/appmetrics.writePrometheusMetrics
+         0     0% 93.66%   320.20MB  1.10%  github.com/VictoriaMetrics/VictoriaMetrics/lib/bytesutil.(*ByteBuffer).Grow (inline)
+         0     0% 93.66%   444.06MB  1.53%  github.com/VictoriaMetrics/VictoriaMetrics/lib/bytesutil.(*ByteBuffer).Write
+         0     0% 93.66%   320.20MB  1.10%  github.com/VictoriaMetrics/VictoriaMetrics/lib/chunkedbuffer.(*Buffer).MustWriteTo
+         0     0% 93.66%   320.20MB  1.10%  github.com/VictoriaMetrics/VictoriaMetrics/lib/chunkedbuffer.(*Buffer).WriteTo
+         0     0% 93.66%   343.52MB  1.18%  github.com/VictoriaMetrics/VictoriaMetrics/lib/encoding.CompressZSTDLevel
+         0     0% 93.66%   793.20MB  2.73%  github.com/VictoriaMetrics/VictoriaMetrics/lib/encoding/zstd.CompressLevel (inline)
+         0     0% 93.66%  1244.71MB  4.29%  github.com/VictoriaMetrics/VictoriaMetrics/lib/httpserver.builtinRoutesHandler
+         0     0% 93.66%  1244.71MB  4.29%  github.com/VictoriaMetrics/VictoriaMetrics/lib/httpserver.handlerWrapper
+         0     0% 93.66%  1244.71MB  4.29%  github.com/VictoriaMetrics/VictoriaMetrics/lib/httpserver.serveWithListener.func3
+         0     0% 93.66%  1244.71MB  4.29%  github.com/VictoriaMetrics/VictoriaMetrics/lib/httpserver.serveWithListener.func4
+         0     0% 93.66%   401.28MB  1.38%  github.com/VictoriaMetrics/VictoriaMetrics/lib/prompb.(*WriteRequest).MarshalProtobuf
+         0     0% 93.66%  1379.05MB  4.75%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*Config).marshal
+         0     0% 93.66%   177.46MB  0.61%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*Config).mustStart
+         0     0% 93.66%   523.53MB  1.80%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*Config).unmarshal
+         0     0% 93.66%   167.65MB  0.58%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*ScrapeConfig).marshalJSON
+         0     0% 93.66%   166.61MB  0.57%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*ScrapeConfig).mustStart
+         0     0% 93.66%  1536.73MB  5.29%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*ScrapeConfig).mustStart.func1
+         0     0% 93.66%  9674.66MB 33.32%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*scrapeConfig).run
+         0     0% 93.66%  9674.66MB 33.32%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*scrapeConfig).run.func1
+         0     0% 93.66%  9674.66MB 33.32%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*scrapeConfigs).add.func1
+         0     0% 93.66% 10888.72MB 37.50%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*scrapeWork).processDataOneShot
+         0     0% 93.66%  1032.79MB  3.56%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*scrapeWork).pushData
+         0     0% 93.66%   320.20MB  1.10%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*scrapeWork).readFromBuffer
+         0     0% 93.66% 11327.56MB 39.01%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*scrapeWork).scrapeAndLogError
+         0     0% 93.66% 11327.56MB 39.01%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*scrapeWork).scrapeInternal
+         0     0% 93.66%   343.52MB  1.18%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*scrapeWork).storeLastScrape
+         0     0% 93.66% 11336.10MB 39.04%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*scraperGroup).update.func1
+         0     0% 93.66%  5723.93MB 19.71%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*writeRequestCtx).addRow
+         0     0% 93.66%  6518.16MB 22.45%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.(*writeRequestCtx).addRows
+         0     0% 93.66%  4855.23MB 16.72%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.Init.func1
+         0     0% 93.66%  5723.93MB 19.71%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.appendLabels
+         0     0% 93.66%  1400.97MB  4.82%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.getSeriesAdded
+         0     0% 93.66%  3210.23MB 11.05%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.loadConfig
+         0     0% 93.66%  4855.23MB 16.72%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.runScraper
+         0     0% 93.66%  9387.89MB 32.33%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape.runScraper.func14
+         0     0% 93.66%  9375.32MB 32.29%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape/discovery/kubernetes.(*SDConfig).GetScrapeWorkObjects (inline)
+         0     0% 93.66%   166.61MB  0.57%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape/discovery/kubernetes.(*SDConfig).MustStart
+         0     0% 93.66%  1536.73MB  5.29%  github.com/VictoriaMetrics/VictoriaMetrics/lib/promscrape/discovery/kubernetes.getScrapeWorkObjectsForLabels
+         0     0% 93.66%   929.12MB  3.20%  github.com/VictoriaMetrics/VictoriaMetrics/lib/protoparser/prometheus.(*Row).unmarshal
+         0     0% 93.66%   159.47MB  0.55%  github.com/VictoriaMetrics/VictoriaMetrics/lib/protoparser/prometheus.(*linesIterator).Init
+         0     0% 93.66%  1512.42MB  5.21%  github.com/VictoriaMetrics/VictoriaMetrics/lib/protoparser/prometheus.UnmarshalWithMetadata
+         0     0% 93.66%  1036.95MB  3.57%  github.com/VictoriaMetrics/VictoriaMetrics/lib/protoparser/prometheus.appendKeys
+         0     0% 93.66%   259.02MB  0.89%  github.com/VictoriaMetrics/VictoriaMetrics/lib/regexutil.SimplifyPromRegex (inline)
+         0     0% 93.66%   257.03MB  0.89%  github.com/VictoriaMetrics/VictoriaMetrics/lib/regexutil.parseRegexp
+         0     0% 93.66%   259.02MB  0.89%  github.com/VictoriaMetrics/VictoriaMetrics/lib/regexutil.simplifyRegex
+         0     0% 93.66%   240.42MB  0.83%  github.com/VictoriaMetrics/metrics.WriteProcessMetrics
+         0     0% 93.66%  1173.44MB  4.04%  github.com/VictoriaMetrics/metrics.WritePrometheus
+         0     0% 93.66%   222.84MB  0.77%  github.com/VictoriaMetrics/metrics.writeGoMetrics
+         0     0% 93.66%   149.67MB  0.52%  github.com/VictoriaMetrics/metrics.writeRuntimeMetric
+         0     0% 93.66%   149.67MB  0.52%  github.com/VictoriaMetrics/metrics.writeRuntimeMetrics
+         0     0% 93.66%  1245.88MB  4.29%  github.com/klauspost/compress/gzhttp.NewWrapper.func1.1
+         0     0% 93.66%   793.20MB  2.73%  github.com/valyala/gozstd.CompressLevel (inline)
+         0     0% 93.66%   793.20MB  2.73%  github.com/valyala/gozstd.compressDictLevel
+         0     0% 93.66%  1611.03MB  5.55%  gopkg.in/yaml%2ev2.(*encoder).emit
+         0     0% 93.66%  1751.54MB  6.03%  gopkg.in/yaml%2ev2.(*encoder).mappingv
+         0     0% 93.66%  1771.54MB  6.10%  gopkg.in/yaml%2ev2.(*encoder).marshal
+         0     0% 93.66%  1790.05MB  6.16%  gopkg.in/yaml%2ev2.(*encoder).marshalDoc
+         0     0% 93.66%  1399.55MB  4.82%  gopkg.in/yaml%2ev2.(*encoder).slicev
+         0     0% 93.66%   903.38MB  3.11%  gopkg.in/yaml%2ev2.(*encoder).stringv
+         0     0% 93.66%  1751.54MB  6.03%  gopkg.in/yaml%2ev2.(*encoder).structv
+         0     0% 93.66%   336.81MB  1.16%  gopkg.in/yaml%2ev2.(*parser).document
+         0     0% 93.66%   336.81MB  1.16%  gopkg.in/yaml%2ev2.(*parser).parse
+         0     0% 93.66%  2649.97MB  9.13%  gopkg.in/yaml%2ev2.Marshal
+         0     0% 93.66%   471.40MB  1.62%  gopkg.in/yaml%2ev2.UnmarshalStrict (inline)
+         0     0% 93.66%   471.40MB  1.62%  gopkg.in/yaml%2ev2.unmarshal
+         0     0% 93.66%   265.30MB  0.91%  net/http.(*Transport).dialConnFor
+         0     0% 93.66%   265.30MB  0.91%  net/http.(*Transport).startDialConnForLocked.func1
+         0     0% 93.66%  1247.88MB  4.30%  net/http.(*conn).serve
+         0     0% 93.66%  1245.88MB  4.29%  net/http.HandlerFunc.ServeHTTP
+         0     0% 93.66%  1245.88MB  4.29%  net/http.serverHandler.ServeHTTP
+         0     0% 93.66%   772.71MB  2.66%  regexp.Compile (inline)
+         0     0% 93.66%   188.53MB  0.65%  regexp.MustCompile
+         0     0% 93.66%   160.56MB  0.55%  regexp.compileOnePass
+         0     0% 93.66%   267.09MB  0.92%  regexp/syntax.(*compiler).compile
+         0     0% 93.66%   163.55MB  0.56%  regexp/syntax.(*compiler).rune
+         0     0% 93.66%   202.52MB   0.7%  regexp/syntax.(*parser).literal
+         0     0% 93.66%   328.62MB  1.13%  regexp/syntax.Compile
+         0     0% 93.66%   511.55MB  1.76%  regexp/syntax.Parse (inline)
+         0     0% 93.66%   159.97MB  0.55%  strings.Split (inline)
+         0     0% 93.66% 27426.28MB 94.45%  sync.(*WaitGroup).Go.func1

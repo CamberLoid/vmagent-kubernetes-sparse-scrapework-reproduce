@@ -1,0 +1,102 @@
+fullnameOverride: reproduction-stack
+global:
+  versions:
+    metrics: v1.154.0
+victoria-metrics-operator:
+  crds:
+    cleanup:
+      enabled: false
+  operator:
+    disable_prometheus_converter: false
+vmsingle:
+  enabled: true
+  spec:
+    retentionPeriod: 1d
+    resources:
+      limits:
+        cpu: "4"
+        memory: 8Gi
+    extraArgs:
+      dedup.minScrapeInterval: 60s
+    storage:
+      resources:
+        requests:
+          storage: 20Gi
+vmagent:
+  enabled: true
+  rbac:
+    namespaced: false
+  spec:
+    selectAllByDefault: false
+    serviceScrapeSelector: {}
+    serviceScrapeNamespaceSelector:
+      matchLabels:
+        kubernetes.io/metadata.name: reproduction-stack
+    nodeScrapeSelector: {}
+    nodeScrapeNamespaceSelector:
+      matchLabels:
+        kubernetes.io/metadata.name: reproduction-stack
+    extraArgs:
+      promscrape.dropOriginalLabels: "true"
+grafana:
+  enabled: true
+  adminUser: admin
+  adminPassword: admin
+  service:
+    type: NodePort
+    nodePort: 30080
+  sidecar:
+    dashboards:
+      enabled: false
+  dashboardProviders:
+    dashboardproviders.yaml:
+      apiVersion: 1
+      providers:
+        - name: default
+          orgId: 1
+          folder: VictoriaMetrics
+          type: file
+          editable: true
+          options:
+            path: /var/lib/grafana/dashboards/default
+  dashboards:
+    default:
+      vmagent:
+        url: https://raw.githubusercontent.com/VictoriaMetrics/VictoriaMetrics/v1.154.0/dashboards/vmagent.json
+        curlOptions: -sLf
+vmalert:
+  enabled: false
+alertmanager:
+  enabled: false
+defaultRules:
+  enabled: false
+# Load only the pinned vmagent dashboard through Grafana; keep stack-wide sync disabled.
+syncJob:
+  enabled: false
+defaultDashboards:
+  enabled: false
+kube-state-metrics:
+  enabled: true
+prometheus-node-exporter:
+  enabled: true
+kubelet:
+  enabled: true
+  vmScrapes:
+    cadvisor:
+      enabled: true
+    probes:
+      enabled: false
+    resources:
+      enabled: false
+kubeApiServer:
+  enabled: false
+kubeControllerManager:
+  enabled: false
+kubeScheduler:
+  enabled: false
+kubeProxy:
+  enabled: false
+kubeEtcd:
+  enabled: false
+coreDns:
+  enabled: false
