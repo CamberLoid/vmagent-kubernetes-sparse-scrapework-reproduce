@@ -4,6 +4,52 @@
 
 This repository uses real Kubernetes objects and native vmagent sharding to reproduce the issue addressed by the [patch](https://github.com/VictoriaMetrics/VictoriaMetrics/pull/11751) and provide comparative validation.
 
+## Results
+
+`./results` contains the latest reproduction results collected by the maintainer in their own environment and is normally ignored by Git.
+
+Use `git add -f results` to include the latest validation results.
+
+### 2026-10-13
+
+Notes:
+
+- The recorded runtime reports four available CPUs per process and a 30 GiB `process_memory_limit_bytes`.
+- The processes had been running for approximately 10m13s and 7m04s when sampled.
+
+#### Measurements
+
+These measurements describe **one captured process**. GiB / MiB use powers of 1024. The metrics snapshot and the subsequent forced-GC profile are separate measurement points.
+
+| Metric | v1.154.0 | v1.154.0-fix | Reduction |
+|---|---:|---:|---:|
+| RSS (metrics snapshot) | 12.703 GiB | 0.728 GiB | 94.27% |
+| Go heap alloc (metrics snapshot) | 10.271 GiB | 0.427 GiB | 95.85% |
+| Peak RSS over process lifetime | 12.704 GiB | 1.076 GiB | 91.53% |
+| Sampled live heap after GC (`inuse_space`) | 7.776 GiB | 0.405 GiB | 94.79% |
+| Live allocations directly attributed to the builder closure (flat) | 7539.84 MiB | 0.50 MiB | 99.99% |
+| Total sampled live objects (`inuse_objects`) | 3,250,278 | 3,235,121 | — |
+
+In the baseline profile, `getScrapeWorkObjectsByAPIWatcherLocked.func1` accounts for **94.69%** of sampled live heap, compared with **0.12%** after the patch. Object counts remain similar while live bytes decrease substantially, consistent with eliminating retained map capacity for empty results.
+
+Sources: [baseline metrics](results/v1.154.0-metrics.txt), [patched metrics](results/v1.154.0-fix-metrics.txt), [baseline heap](results/v1.154.0-heap.pb.gz), [patched heap](results/v1.154.0-fix-heap.pb.gz). Target equality compares labels and `scrapeUrl`, excluding scrape timestamps, durations and changing sample values.
+
+#### Screenshots and conclusion
+
+This result supports a substantial reduction in memory retained by full Kubernetes target rebuilds while preserving the configuration and the captured shard's target set.
+
+**Baseline: CPU / RSS and target status.**
+
+![Baseline CPU and RSS](results/v1.154.0-grafana-screenshot-1.png)
+
+![Baseline target status](results/v1.154.0-grafana-screenshot-2.png)
+
+**Patched: CPU / RSS and target status.** The RSS screenshot retains historical curves from instances running before the switch. The new patched instances are below 1 GB; use the per-process metrics above for exact values. Both status screenshots show 10,000 up targets and zero down targets in the dashboard's aggregate view.
+
+![Patched CPU and RSS](results/v1.154.0-fix-grafana-screenshot-2.png)
+
+![Patched target status](results/v1.154.0-fix-grafana-screenshot-1.png)
+
 ## Architecture and isolation
 
 | Namespace | Resources | Scrape configuration selection |
@@ -190,48 +236,4 @@ kubectl delete -f reproduction.yaml --ignore-not-found
 
 Namespace deletion also removes generated objects and may delete VMSingle data. K3s and shared CRDs remain installed.
 
-## Results
 
-`./results` contains the latest reproduction results collected by the maintainer in their own environment and is normally ignored by Git.
-
-Use `git add -f results` to include the latest validation results.
-
-### 2026-10-13
-
-Notes:
-
-- The recorded runtime reports four available CPUs per process and a 30 GiB `process_memory_limit_bytes`.
-- The processes had been running for approximately 10m13s and 7m04s when sampled.
-
-#### Measurements
-
-These measurements describe **one captured process**. GiB / MiB use powers of 1024. The metrics snapshot and the subsequent forced-GC profile are separate measurement points.
-
-| Metric | v1.154.0 | v1.154.0-fix | Reduction |
-|---|---:|---:|---:|
-| RSS (metrics snapshot) | 12.703 GiB | 0.728 GiB | 94.27% |
-| Go heap alloc (metrics snapshot) | 10.271 GiB | 0.427 GiB | 95.85% |
-| Peak RSS over process lifetime | 12.704 GiB | 1.076 GiB | 91.53% |
-| Sampled live heap after GC (`inuse_space`) | 7.776 GiB | 0.405 GiB | 94.79% |
-| Live allocations directly attributed to the builder closure (flat) | 7539.84 MiB | 0.50 MiB | 99.99% |
-| Total sampled live objects (`inuse_objects`) | 3,250,278 | 3,235,121 | — |
-
-In the baseline profile, `getScrapeWorkObjectsByAPIWatcherLocked.func1` accounts for **94.69%** of sampled live heap, compared with **0.12%** after the patch. Object counts remain similar while live bytes decrease substantially, consistent with eliminating retained map capacity for empty results.
-
-Sources: [baseline metrics](results/v1.154.0-metrics.txt), [patched metrics](results/v1.154.0-fix-metrics.txt), [baseline heap](results/v1.154.0-heap.pb.gz), [patched heap](results/v1.154.0-fix-heap.pb.gz). Target equality compares labels and `scrapeUrl`, excluding scrape timestamps, durations and changing sample values.
-
-#### Screenshots and conclusion
-
-This result supports a substantial reduction in memory retained by full Kubernetes target rebuilds while preserving the configuration and the captured shard's target set.
-
-**Baseline: CPU / RSS and target status.**
-
-![Baseline CPU and RSS](results/v1.154.0-grafana-screenshot-1.png)
-
-![Baseline target status](results/v1.154.0-grafana-screenshot-2.png)
-
-**Patched: CPU / RSS and target status.** The RSS screenshot retains historical curves from instances running before the switch. The new patched instances are below 1 GB; use the per-process metrics above for exact values. Both status screenshots show 10,000 up targets and zero down targets in the dashboard's aggregate view.
-
-![Patched CPU and RSS](results/v1.154.0-fix-grafana-screenshot-2.png)
-
-![Patched target status](results/v1.154.0-fix-grafana-screenshot-1.png)

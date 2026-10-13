@@ -4,6 +4,52 @@
 
 该仓库使用真实 Kubernetes 对象和 vmagent 原生分片，复现 [Patch](https://github.com/VictoriaMetrics/VictoriaMetrics/pull/11751) 所解决的问题，并输出对比验证。
 
+## Results
+
+`./results` 保留了最近一次维护者在自己环境运行的复现结果；通常情况下为 ignored。
+
+可以使用 `git add -f results` 添加最新的验证结果。
+
+### 2026-10-13 
+
+说明：
+
+- 数据中的运行时可用 CPU 为每进程 4，`process_memory_limit_bytes` 为 30 GiB
+- 进程采样时分别运行约 10 分 13 秒和 7 分 4 秒
+
+#### 测量结果
+
+以下均为**所采集的单个进程**；GiB / MiB 按 1024 进制换算。metrics 快照与随后强制 GC 的 profile 是不同测量点。
+
+| 指标 | v1.154.0 | v1.154.0-fix | 下降 |
+|---|---:|---:|---:|
+| RSS（metrics 快照） | 12.703 GiB | 0.728 GiB | 94.27% |
+| Go heap alloc（metrics 快照） | 10.271 GiB | 0.427 GiB | 95.85% |
+| 峰值 RSS（进程生命周期内） | 12.704 GiB | 1.076 GiB | 91.53% |
+| GC 后采样存活 heap（`inuse_space`） | 7.776 GiB | 0.405 GiB | 94.79% |
+| 构建闭包直接归因的存活分配（flat） | 7539.84 MiB | 0.50 MiB | 99.99% |
+| 采样存活对象总数（`inuse_objects`） | 3,250,278 | 3,235,121 | — |
+
+基线 profile 中，`getScrapeWorkObjectsByAPIWatcherLocked.func1` 占采样存活 heap 的 **94.69%**；修复后为 **0.12%**。对象总数接近，但存活字节数显著下降，与消除空结果 map 底层容量保留的机制一致。
+
+来源：[基线 metrics](results/v1.154.0-metrics.txt)、[修复版 metrics](results/v1.154.0-fix-metrics.txt)、[基线 heap](results/v1.154.0-heap.pb.gz)、[修复版 heap](results/v1.154.0-fix-heap.pb.gz)。目标比较只使用标签和 `scrapeUrl`，排除抓取时间、耗时和动态样本值。
+
+#### 图片与结论
+
+本次记录支持：补丁在保持配置及所采集 shard 的目标集合一致时，大幅降低 Kubernetes 全量重建结果所保留的内存。
+
+**基线：CPU / RSS 与目标状态。**
+
+![基线 CPU 与 RSS](results/v1.154.0-grafana-screenshot-1.png)
+
+![基线目标状态](results/v1.154.0-grafana-screenshot-2.png)
+
+**修复版：CPU / RSS 与目标状态。** RSS 截图保留了切换前的历史实例曲线；修复后的新实例曲线低于 1 GB，具体数值以上方单进程 metrics 为准。两组状态截图均显示 10000 个目标 up、0 个 down，这是 dashboard 的聚合视图。
+
+![修复版 CPU 与 RSS](results/v1.154.0-fix-grafana-screenshot-2.png)
+
+![修复版目标状态](results/v1.154.0-fix-grafana-screenshot-1.png)
+
 ## 架构与隔离
 
 | Namespace | 资源 | 监控配置的选择范围 |
@@ -189,48 +235,3 @@ kubectl delete -f reproduction.yaml --ignore-not-found
 # 未清理 CRDs
 ```
 
-## Results
-
-`./results` 保留了最近一次维护者在自己环境运行的复现结果；通常情况下为 ignored。
-
-可以使用 `git add -f results` 添加最新的验证结果。
-
-### 2026-10-13 
-
-说明：
-
-- 数据中的运行时可用 CPU 为每进程 4，`process_memory_limit_bytes` 为 30 GiB
-- 进程采样时分别运行约 10 分 13 秒和 7 分 4 秒
-
-#### 测量结果
-
-以下均为**所采集的单个进程**；GiB / MiB 按 1024 进制换算。metrics 快照与随后强制 GC 的 profile 是不同测量点。
-
-| 指标 | v1.154.0 | v1.154.0-fix | 下降 |
-|---|---:|---:|---:|
-| RSS（metrics 快照） | 12.703 GiB | 0.728 GiB | 94.27% |
-| Go heap alloc（metrics 快照） | 10.271 GiB | 0.427 GiB | 95.85% |
-| 峰值 RSS（进程生命周期内） | 12.704 GiB | 1.076 GiB | 91.53% |
-| GC 后采样存活 heap（`inuse_space`） | 7.776 GiB | 0.405 GiB | 94.79% |
-| 构建闭包直接归因的存活分配（flat） | 7539.84 MiB | 0.50 MiB | 99.99% |
-| 采样存活对象总数（`inuse_objects`） | 3,250,278 | 3,235,121 | — |
-
-基线 profile 中，`getScrapeWorkObjectsByAPIWatcherLocked.func1` 占采样存活 heap 的 **94.69%**；修复后为 **0.12%**。对象总数接近，但存活字节数显著下降，与消除空结果 map 底层容量保留的机制一致。
-
-来源：[基线 metrics](results/v1.154.0-metrics.txt)、[修复版 metrics](results/v1.154.0-fix-metrics.txt)、[基线 heap](results/v1.154.0-heap.pb.gz)、[修复版 heap](results/v1.154.0-fix-heap.pb.gz)。目标比较只使用标签和 `scrapeUrl`，排除抓取时间、耗时和动态样本值。
-
-#### 图片与结论
-
-本次记录支持：补丁在保持配置及所采集 shard 的目标集合一致时，大幅降低 Kubernetes 全量重建结果所保留的内存。
-
-**基线：CPU / RSS 与目标状态。**
-
-![基线 CPU 与 RSS](results/v1.154.0-grafana-screenshot-1.png)
-
-![基线目标状态](results/v1.154.0-grafana-screenshot-2.png)
-
-**修复版：CPU / RSS 与目标状态。** RSS 截图保留了切换前的历史实例曲线；修复后的新实例曲线低于 1 GB，具体数值以上方单进程 metrics 为准。两组状态截图均显示 10000 个目标 up、0 个 down，这是 dashboard 的聚合视图。
-
-![修复版 CPU 与 RSS](results/v1.154.0-fix-grafana-screenshot-2.png)
-
-![修复版目标状态](results/v1.154.0-fix-grafana-screenshot-1.png)
